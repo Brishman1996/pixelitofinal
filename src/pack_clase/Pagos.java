@@ -17,6 +17,38 @@ public class Pagos {
     public String carreras;
     public int meses_pagos;
 
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public String getApe_nom() {
+        return ape_nom;
+    }
+
+    public String getCarreras() {
+        return carreras;
+    }
+
+    public int getMeses_pagos() {
+        return meses_pagos;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public void setApe_nom(String ape_nom) {
+        this.ape_nom = ape_nom;
+    }
+
+    public void setCarreras(String carreras) {
+        this.carreras = carreras;
+    }
+
+    public void setMeses_pagos(int meses_pagos) {
+        this.meses_pagos = meses_pagos;
+    }
+    
 //metodos
     //constructiores: permite iniciar  un objetos del tipo venta 
     public Pagos(){
@@ -36,30 +68,30 @@ public class Pagos {
     //operaciones :definen el comportamineto 
     public double ImporteCompra(){
         
-        if(carreras.equals("ADMINISTRACION DE NEGOCIOS INTERNACIONALES"))
-             return  700*meses_pagos;
-        else if (carreras.equals("ADMINISTRACION DE GESTION COMERCIAL"))
-            return 600*meses_pagos;
-        else if (carreras.equals("ADMINISTRACION DE EMPRESAS"))
-            return 800*meses_pagos;
-        else if (carreras.equals("MARKETING"))
-            return 900*meses_pagos;
-        else if (carreras.equals("ADMINISTRACION DE NEGOCIOS FINANCIEROS Y BANCARIOS"))
-            return 500*meses_pagos;
-        else if (carreras.equals("CONTABILIDAD"))
-            return 800*meses_pagos;
-        else if (carreras.equals("DISEÑO Y DESARROLLO DE SOFTWARE"))
-            return 700*meses_pagos;
-        
-        else if (carreras.equals("ADMINISTRACION DE SISTEMAS"))
-            return 600*meses_pagos;
-        else if (carreras.equals("DISEÑO GRAFICO"))
-            return 700*meses_pagos;
-        
-        else if (carreras.equals("PUBLICIDAD"))
-            return 500*meses_pagos;
-        else
-            return 0; 
+       switch (carreras) {
+           case "ADMINISTRACION DE NEGOCIOS INTERNACIONALES":
+               return  700*meses_pagos;
+           case "ADMINISTRACION DE GESTION COMERCIAL":
+               return 600*meses_pagos;
+           case "ADMINISTRACION DE EMPRESAS":
+               return 800*meses_pagos;
+           case "MARKETING":
+               return 900*meses_pagos;
+           case "ADMINISTRACION DE NEGOCIOS FINANCIEROS Y BANCARIOS":
+               return 500*meses_pagos;
+           case "CONTABILIDAD":
+               return 800*meses_pagos;
+           case "DISEÑO Y DESARROLLO DE SOFTWARE":
+               return 700*meses_pagos;
+           case "ADMINISTRACION DE SISTEMAS":
+               return 600*meses_pagos;
+           case "DISEÑO GRAFICO":
+               return 700*meses_pagos;
+           case "PUBLICIDAD":
+               return 500*meses_pagos;
+           default:
+               return 0;
+       } 
     }
  }
    
