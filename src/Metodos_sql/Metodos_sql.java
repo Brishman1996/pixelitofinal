@@ -26,7 +26,7 @@ public class Metodos_sql {
     //creamos metodos  para guardar usuario 
     // le damos parametros
     public int guardar(String nombre, String apellidos, String correo, String contraseña) {
-        int resultado = 0;
+        int resultado;
         Connection conexion = null;
 
         String sentencia_guardar = ("INSERT INTO usuarios(nombre,apellidos,correo,contraseña) VALUES(?,?,?,?)");
@@ -42,8 +42,9 @@ public class Metodos_sql {
             sentencia_preparada.close();
 
             conexion.close();
+            resultado = 0;
         } catch (Exception e) {
-
+            resultado = 1;
             System.out.println(e);
 
         }
