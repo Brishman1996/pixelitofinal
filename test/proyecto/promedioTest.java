@@ -37,6 +37,60 @@ public class promedioTest {
     }
 
     /**
+     * Test of setN3 method, of class promedio.
+     */
+    @Test
+    public void testSetN3() {
+        System.out.println("setN3");
+        String n3 = "";
+        promedio instance = new promedio();
+        instance.setN3(n3);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setN4 method, of class promedio.
+     */
+    @Test
+    public void testSetN4() {
+        System.out.println("setN4");
+        String n4 = "";
+        promedio instance = new promedio();
+        instance.setN4(n4);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getPromedio method, of class promedio.
+     */
+    @Test
+    public void testGetPromedio() {
+        System.out.println("getPromedio");
+        promedio instance = new promedio();
+        String expResult = "";
+        String result = instance.getPromedio();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getRendimiento method, of class promedio.
+     */
+    @Test
+    public void testGetRendimiento() {
+        System.out.println("getRendimiento");
+        promedio instance = new promedio();
+        String expResult = "";
+        String result = instance.getRendimiento();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
      * Test of calcularPromedio method, of class promedio.
      */
     @Test
