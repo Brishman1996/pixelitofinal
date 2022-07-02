@@ -17,6 +17,7 @@ public class Metodos_sql {
     //instancioamos 
 
     public static conexionBD conexion = new conexionBD();
+
     public static PreparedStatement sentencia_preparada;
     public static ResultSet resultado;
     public static String sql;
