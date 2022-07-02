@@ -229,6 +229,9 @@ public class registrarse extends javax.swing.JFrame {
         if (this.verAlerta().length() < 1) {
             if (this.registrarUsuario() == true) {
                 JOptionPane.showMessageDialog(this, "registro realizado correctamente");
+                login login = new login();
+                login.setVisible(true);
+                dispose();
 
             } else if (this.registrarUsuario() == false) {
                 JOptionPane.showMessageDialog(this, "no se pudo guardar correctamente los datos" + "\n" + this.verAlerta());
