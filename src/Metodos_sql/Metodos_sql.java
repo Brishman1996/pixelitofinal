@@ -72,9 +72,9 @@ public class Metodos_sql {
         return busqueda_nombre;
     }
 
-    public static String buscarUsuarioRegistrado(String correo, String contraseña) {
+    public static int buscarUsuarioRegistrado(String correo, String contraseña) {
 
-        String busqueda_usuario = null;
+        int busqueda_usuario = 0;
         Connection conexion = null;
 
         try {
@@ -83,9 +83,9 @@ public class Metodos_sql {
            sentencia_preparada = conexion.prepareStatement(sentencia_buscar_usuario);
             resultado = sentencia_preparada.executeQuery();
             if (resultado.next()) {
-                busqueda_usuario = "el usuario ya se encuentra registrado";
+                busqueda_usuario = 1;
             } else {
-                busqueda_usuario = "el usuario no se encuentra registrado";
+                busqueda_usuario = 0;
             }
             conexion .close();
         } catch (SQLException e) {
@@ -95,5 +95,7 @@ public class Metodos_sql {
         return busqueda_usuario;
 
     }
+
+    
 
 }
