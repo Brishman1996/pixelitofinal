@@ -23,41 +23,54 @@ public class promedio extends javax.swing.JFrame {
 
     private double promedio;
     private String rendimiento;
-    
+
+    private String alerta = "";
+
     private void setN1(String n1) {
-        this.n1 = Double.parseDouble(n1);
+        this.n1 = validarCampoNota(n1, "Nota 1");
     }
 
     private void setN2(String n2) {
-        this.n2 = Double.parseDouble(n2);
+        this.n2 = validarCampoNota(n2, "Nota 2");
     }
 
-    public void setN3(String n3) {
-        this.n3 = Double.parseDouble(n3);
+    private void setN3(String n3) {
+        this.n3 = validarCampoNota(n3, "Nota 3");
     }
 
-    public void setN4(String n4) {
-        this.n4 = Double.parseDouble(n4);
+    private void setN4(String n4) {
+        this.n4 = validarCampoNota(n4, "Nota 4");
     }
-    
-    public String getPromedio() {
+
+    private String getPromedio() {
         return Double.toString(this.promedio);
     }
-
+    
     public String getRendimiento() {
         return rendimiento;
     }
-    
-    public void calcularPromedio() {
-        if ((n1 >= 0 && n1 <= 20) && (n2 >= 0 && n2 <= 20) && (n3 >= 0 && n3 <= 20) && (n4 >= 0 && n4 <= 20)) {
-            this.promedio = (this.n1 + this.n2 + this.n3 + this.n4) / 4;
+
+    private double validarCampoNota(String num, String nota) {
+        double decimal = -1;
+        if (!num.isEmpty()) {
+            try {
+                decimal = Double.parseDouble(num);
+                if (decimal <0 || decimal > 20) {
+                   this.alerta += nota + ": Ingresa una nota valida del 0 a 20" + "\n";
+                }
+            } catch (Exception e) {
+                this.alerta += nota + ": Ingresa un valor numerico" + "\n";
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "INTENTE OTRA VEZ");
-            txt_n2.setText("");
-            txt_n3.setText("");
-            txt_n4.setText("");
-            txt_n5.setText("");
+            this.alerta += nota + ": Ingresa algun valor" + "\n";
         }
+
+        return decimal=0;
+    }
+
+    public void calcularPromedio() {
+            
+            this.promedio = (this.n1 + this.n2 + this.n3 + this.n4) / 4;
     }
 
     public void determinarRendimiento() {
@@ -270,11 +283,15 @@ public class promedio extends javax.swing.JFrame {
         this.setN3(txt_n4.getText());
         this.setN4(txt_n5.getText());
 
-        this.calcularPromedio();
-        this.determinarRendimiento();
-
-        txt_promedio1.setText(String.valueOf(this.promedio));
-        txt_rendimiento.setText(String.valueOf(this.rendimiento));
+        if (this.alerta.length() <= 0) {
+            this.calcularPromedio();
+            this.determinarRendimiento();
+            txt_promedio1.setText(String.valueOf(this.promedio));
+            txt_rendimiento.setText(String.valueOf(this.rendimiento));
+        } else {
+            JOptionPane.showMessageDialog(this, this.alerta);
+            this.alerta = "";
+        }
 
 
     }//GEN-LAST:event_btn_calcularActionPerformed
@@ -371,7 +388,4 @@ public class promedio extends javax.swing.JFrame {
     private javax.swing.JTextField txt_rendimiento;
     // End of variables declaration//GEN-END:variables
 
-    
-
-    
 }

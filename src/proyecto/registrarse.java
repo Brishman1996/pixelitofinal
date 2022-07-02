@@ -7,12 +7,92 @@ package proyecto;
 
 import Metodos_sql.Metodos_sql;
 import javax.swing.JOptionPane;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-/**
- *
- * @author Nel
- */
 public class registrarse extends javax.swing.JFrame {
+
+    private String nombre;
+    private String apellidos;
+    private String correo;
+    private String contraseña;
+
+    private String alerta = "";
+
+    private void setNombre(String nombre) {
+        this.nombre = this.validarCampo(nombre, "Nombre");
+    }
+
+    private void setApellidos(String apellidos) {
+        this.apellidos = this.validarCampo(apellidos, "Apellidos");
+    }
+
+    private void setCorreo(String correo) {
+
+        Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+        Matcher mather = pattern.matcher(correo);
+
+        if (!correo.isEmpty()) {
+            if (mather.find() == true) {
+                this.correo = correo;
+            } else {
+                this.alerta += "Correo: Ingresa un correo valido" + "\n";
+            }
+        } else {
+            this.alerta += "Correo: Ingresa algun valor" + "\n";
+        }
+
+    }
+
+    private void setContraseña(String contraseña) {
+
+        if (!contraseña.isEmpty()) {
+            this.contraseña = contraseña;
+        }else{
+            this.alerta += "Contraseña: Ingresa algun valor" + "\n";
+        }
+
+    }
+
+    public void setAlerta(String alerta) {
+        this.alerta = alerta;
+    }
+
+    private String validarCampo(String valor, String campo) {
+        boolean format = true;
+        String texto = "";
+        if (!valor.isEmpty()) {
+            for (int x = 0; x < valor.length(); x++) {
+                char c = valor.charAt(x);
+                // Si no está entre a y z, ni entre A y Z, ni es un espacio
+                if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || c == ' ')) {
+                    format = false;
+                }
+            }
+            if (format == false) {
+                this.alerta += campo + ": Ingresa unicamente letras" + "\n";
+            } else {
+                texto = valor;
+            }
+        } else {
+            this.alerta += campo + ": Ingresa algun valor" + "\n";
+        }
+        return texto;
+    }
+
+    private String verAlerta() {
+        return this.alerta;
+    }
+
+    private boolean registrarUsuario() {
+        boolean valid = false;
+        int valor;
+        valor = metodos.guardar(this.nombre, this.apellidos, this.correo, this.contraseña);
+        if (valor == 0) {
+            valid = true;
+        }
+        return valid;
+    }
 
     /**
      * Creates new form registrarse
@@ -141,16 +221,26 @@ public class registrarse extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        this.setNombre(txtNombre.getText());
+        this.setApellidos(txtApellidos.getText());
+        this.setCorreo(txtCorreo.getText());
+        this.setContraseña(txtContraseña.getText());
 
-        int i = metodos.guardar(txtNombre.getText(), txtApellidos.getText(), txtCorreo.getText(), txtContraseña.getText());
-        if (i > 0) {
+        if (this.verAlerta().length() < 1) {
+            if (this.registrarUsuario() == true) {
+                JOptionPane.showMessageDialog(this, "registro realizado correctamente");
 
-            JOptionPane.showMessageDialog(this, "registro realizado correctamente");
+            } else if (this.registrarUsuario() == false) {
+                JOptionPane.showMessageDialog(this, "no se pudo guardar correctamente los datos" + "\n" + this.verAlerta());
 
+            }
         } else {
-            JOptionPane.showMessageDialog(this, "no se pudo guardar correctamente los datos ");
-
-        }    // TODO add your handling code here:
+            {
+                JOptionPane.showMessageDialog(this, this.verAlerta());
+                this.setAlerta("");
+            }
+        }
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
@@ -184,16 +274,24 @@ public class registrarse extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(registrarse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(registrarse.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(registrarse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(registrarse.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(registrarse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(registrarse.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(registrarse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(registrarse.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -220,4 +318,5 @@ public class registrarse extends javax.swing.JFrame {
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
+
 }
