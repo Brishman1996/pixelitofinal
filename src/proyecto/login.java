@@ -8,12 +8,72 @@ package proyecto;
 
 import Metodos_sql.Metodos_sql;
 import javax.swing.JOptionPane;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  *
  * @author LUZ
  */
 public class login extends javax.swing.JFrame {
+    
+    private String usuarios;
+    private String contraseña;
+    Metodos_sql metodos = new Metodos_sql();
+    private String alerta = "";
+    
+    private void setUsuarios(String correo) {
+        
+        Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+        Matcher mather = pattern.matcher(correo);
 
+        if (!correo.isEmpty()) {
+            if (mather.find() == true) {
+                this.usuarios = correo;
+            } else {
+                this.alerta += "Correo: Ingresa un correo valido" + "\n";
+            }
+        } else {
+            this.alerta += "Correo: Ingrese un valor\n";
+                  
+        }
+        this.usuarios = correo;
+    }
+    
+    private void setAlerta(String alerta) {
+        this.alerta = alerta;
+    }
+    
+    private void setContraseña(String contraseña) {
+        if (!contraseña.isEmpty()) {
+            this.contraseña = contraseña;
+        }else{
+            this.alerta += "Contraseña: Ingresa algun valor" + "\n";
+        }
+    }
+    
+    private String verAlerta() {
+        return this.alerta;
+    }
+    
+    private boolean inciarSesion (){
+        boolean valido=false;
+        int mensaje;
+             
+             mensaje=metodos.buscarUsuarioRegistrado(this.usuarios,this.contraseña);
+             System.out.println("Validando sesión"); 
+             if(mensaje == 1){
+                 valido=true;
+             }else{
+                 valido=false;
+             }
+        return valido;
+    }
+    
+    private String nombreUsuarios(){
+        return this.metodos.buscarNombre(this.usuarios);
+    }
+    
     /**
      * Creates new form login
      */
@@ -23,7 +83,9 @@ public class login extends javax.swing.JFrame {
            this.setLocationRelativeTo(null);
     }
 //instanciamos
-    Metodos_sql metodos = new Metodos_sql();
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -177,25 +239,26 @@ public class login extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 //creamos las cantidades de usuarios
-      String busqueda_usuario = metodos.buscarUsuarioRegistrado(txtCorreo.getText(),txtContraseña.getText());
-      if(txtCorreo.getText().equals("root")&&txtContraseña.getText().equals("123456789")){
-      JOptionPane.showMessageDialog(this,"BIENVENIDOS INICIASTE SECCION  COMO (Administrador)");
-         menu menu = new menu();
-             menu.lblnombre.setText("Administrador");
-               menu.setVisible(true);
-             this.dispose();
+      this.setUsuarios(txtCorreo.getText());
+      this.setContraseña(txtContraseña.getText());
       
-        }else if (busqueda_usuario.equals("el usuario ya se encuentra registrado")){
-            String busqueda_nombre  = metodos.buscarNombre(txtCorreo.getText());
-             JOptionPane.showMessageDialog(this,"Bienvenido (a) \n" + busqueda_nombre);
+      if(this.verAlerta().length() < 1){
+          if(this.inciarSesion()== true ){
+          JOptionPane.showMessageDialog(this,"Bienvenido (a) \n" + nombreUsuarios());
              menu menu = new menu();
-             menu.lblnombre.setText(busqueda_nombre);
+             menu.lblnombre.setText(nombreUsuarios());
                menu.setVisible(true);
              this.dispose();
         }else{
              JOptionPane.showMessageDialog(this,"el usuario no se encuentra registrado, porfavor  debe  registrarse");
               
         }
+      }else{
+          JOptionPane.showMessageDialog(this, this.verAlerta());
+                this.setAlerta("");
+      }
+      
+      
 }
      
       

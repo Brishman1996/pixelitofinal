@@ -12,7 +12,7 @@ package pack_clase;
 public class Pagos {
     
      //atributos- difinen el estado
-   public int codigo; 
+    public int codigo; 
     public String ape_nom;
     public String carreras;
     public int meses_pagos;

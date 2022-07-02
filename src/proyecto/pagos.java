@@ -19,6 +19,114 @@ import javax.swing.JOptionPane;
  * @author Nel
  */
 public class pagos extends javax.swing.JFrame {
+    
+    private int codigo; 
+    private String ape_nom;
+    private String carreras;
+    private int meses_pagos;
+
+    
+    private String infoCaja;
+    
+    private String getInfoCaja() {
+        return infoCaja;
+    }
+    private int getCodigo() {
+        return codigo;
+    }
+
+    private String getApe_nom() {
+        return ape_nom;
+    }
+
+    private String getCarreras() {
+        return carreras;
+    }
+
+    private int getMeses_pagos() {
+        return meses_pagos;
+    }
+
+    private void setCodigo(String codigo) {
+        if(!codigo.isEmpty()){
+            try {
+                this.codigo = Integer.parseInt(codigo);
+            } catch (Exception e) {
+                System.out.println("Error por valor incorrecto");
+            }
+        
+        }
+    }
+
+    private void setApe_nom(String ape_nom) {
+        this.ape_nom = ape_nom;
+    }
+
+    private void setCarreras(String carreras) {
+        this.carreras = carreras;
+    }
+
+    private void setMeses_pagos(String meses_pagos) {
+        if (!meses_pagos.isEmpty()){
+            try {
+                this.meses_pagos = Integer.parseInt(meses_pagos);
+            } catch (Exception e) {
+                System.out.println("Error por valor incorrecto");
+            }
+        }
+        
+    }
+    
+
+    public pagos (int codigo, String ape_nom, String carreras, int meses_pagos){
+        //asignamos a los atributos  de la clase valores iniciales que pase  como parametro ,pueden llamarce diferente a los atributos
+        //para java  reconozca  que estoy utilizando los atributos de l a clases, utilizaremos this
+       
+        this.codigo=codigo;
+        this.ape_nom=ape_nom;
+        this.carreras=carreras;
+        this.meses_pagos=meses_pagos;
+        
+    }
+   
+    private double ImporteCompra(){
+        
+       switch (carreras) {
+           case "ADMINISTRACION DE NEGOCIOS INTERNACIONALES":
+               return  700*meses_pagos;
+           case "ADMINISTRACION DE GESTION COMERCIAL":
+               return 600*meses_pagos;
+           case "ADMINISTRACION DE EMPRESAS":
+               return 800*meses_pagos;
+           case "MARKETING":
+               return 900*meses_pagos;
+           case "ADMINISTRACION DE NEGOCIOS FINANCIEROS Y BANCARIOS":
+               return 500*meses_pagos;
+           case "CONTABILIDAD":
+               return 800*meses_pagos;
+           case "DISEÑO Y DESARROLLO DE SOFTWARE":
+               return 700*meses_pagos;
+           case "ADMINISTRACION DE SISTEMAS":
+               return 600*meses_pagos;
+           case "DISEÑO GRAFICO":
+               return 700*meses_pagos;
+           case "PUBLICIDAD":
+               return 500*meses_pagos;
+           default:
+               return 0;
+       } 
+    }
+   
+    public String resultado() {
+        this.infoCaja += "Boleta de venta \n"
+                        +"*****************\n"+
+        "Numerode venta: "+this.codigo +"\n" +
+                "ALUMNO: "+this.ape_nom+"\n"+
+                "CARRERAS: "+this.carreras +"\n"+
+                "MESES A PAGAR: "+this.meses_pagos+"\n"+
+                "Importe A  PAGAR "+ImporteCompra();
+        return infoCaja;
+    }
 
     /**
      * Creates new form pagos
@@ -195,21 +303,16 @@ public class pagos extends javax.swing.JFrame {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
-        Pagos obj= new Pagos();
        
+        
         //leer los atributos de la clase venta 
-        obj.codigo=Integer.parseInt(txtCodigo.getText());
-        obj.ape_nom=txtApe_Nom.getText();
-        obj.carreras=cboCarreras.getSelectedItem().toString();
-        obj.meses_pagos=Integer.parseInt(txtMeses_pagos.getText());
-        //escribir los atributos yoperaciones  de la venta 
-        txtMostrar.setText("Boleta de venta \n"
-                        +"*****************\n");
-        txtMostrar.append("Numerode venta: "+obj.codigo+"\n" +
-                "ALUMNO: "+obj.ape_nom+"\n"+
-                "CARRERAS: "+obj.carreras+"\n"+
-                "MESES A PAGAR: "+obj.meses_pagos+"\n"+
-                "Importe A  PAGAR "+obj.ImporteCompra());
+        setCodigo(txtCodigo.getText());
+        setApe_nom(txtApe_Nom.getText());
+        setCarreras(cboCarreras.getSelectedItem().toString());
+        setMeses_pagos(txtMeses_pagos.getText());
+        //escribir los atributos y operaciones  de la venta 
+        txtMostrar.setText(resultado());
+        
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
@@ -248,22 +351,16 @@ public class pagos extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(pagos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(pagos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(pagos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(pagos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        
+        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new pagos().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new pagos().setVisible(true);
         });
     }
 
