@@ -39,7 +39,7 @@ public class promedioTest {
 
     @Test
     public void testCalcularPromedio_01() {
-        System.out.println("Prueba de unitaria");
+        System.out.println("Prueba unitaria");
         System.out.println("Caso prueba: Datos validos y completos");
         
         promedio mediaAritmetica = new promedio();
@@ -50,7 +50,7 @@ public class promedioTest {
         mediaAritmetica.setN4("5");
         
         mediaAritmetica.calcularPromedio();
-        String esperado = "11,5";
+        String esperado = "11.5";
         
         String resultado = mediaAritmetica.getPromedio();
         
@@ -59,7 +59,7 @@ public class promedioTest {
     }
     @Test
     public void testCalcularPromedio_02() {
-        System.out.println("Prueba de unitaria");
+        System.out.println("Prueba unitaria");
         System.out.println("Caso prueba: Datos fuera de rango");
         
         promedio mediaAritmetica = new promedio();
@@ -69,13 +69,58 @@ public class promedioTest {
         mediaAritmetica.setN3("600");
         mediaAritmetica.setN4("1000");
         
+        //METODO A TESTEAR
         mediaAritmetica.calcularPromedio();
-        String esperado = null;
+        
+        String esperado = "0.0";
         
         String resultado = mediaAritmetica.getPromedio();
         
         assertEquals(esperado, resultado);
            
     }
-    
+    @Test
+    public void testCalcularPromedio_03() {
+        System.out.println("Prueba unitaria");
+        System.out.println("Caso prueba: Campos sin datos");
+        
+        promedio mediaAritmetica = new promedio();
+        
+        mediaAritmetica.setN1("");
+        mediaAritmetica.setN2("");
+        mediaAritmetica.setN3("");
+        mediaAritmetica.setN4("");
+        
+        //METODO A TESTEAR
+        mediaAritmetica.calcularPromedio();
+        
+        String esperado = "0.0";
+        
+        String resultado = mediaAritmetica.getPromedio();
+        
+        assertEquals(esperado, resultado);
+           
+    }
+        @Test
+    public void testCalcularPromedio_04() {
+        System.out.println("Prueba unitaria");
+        System.out.println("Caso prueba: Datos no numericos");
+        
+        promedio mediaAritmetica = new promedio();
+        
+        mediaAritmetica.setN1("Haste una profe");
+        mediaAritmetica.setN2("Quiero 20");
+        mediaAritmetica.setN3("si lo hace");
+        mediaAritmetica.setN4("el fuego de la motivación seguira encendida");
+        
+        //METODO A TESTEAR
+        mediaAritmetica.calcularPromedio();
+        
+        String esperado = "0.0";
+        
+        String resultado = mediaAritmetica.getPromedio();
+        
+        assertEquals(esperado, resultado);
+           
+    }
 }

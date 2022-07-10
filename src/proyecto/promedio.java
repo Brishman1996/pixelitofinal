@@ -50,22 +50,25 @@ public class promedio extends javax.swing.JFrame {
         return rendimiento;
     }
 
-    private double validarCampoNota(String num, String nota) {
+    public double validarCampoNota(String num, String nota) {
         double decimal = -1;
         if (!num.isEmpty()) {
             try {
                 decimal = Double.parseDouble(num);
                 if (decimal <0 || decimal > 20) {
                    this.alerta += nota + ": Ingresa una nota valida del 0 a 20" + "\n";
+                   return decimal=0;
                 }
             } catch (Exception e) {
                 this.alerta += nota + ": Ingresa un valor numerico" + "\n";
+                return decimal=0;
             }
         } else {
             this.alerta += nota + ": Ingresa algun valor" + "\n";
+            return decimal=0;
         }
 
-        return decimal=0;
+        return decimal;
     }
 
     public void calcularPromedio() {
