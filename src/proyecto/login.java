@@ -52,7 +52,7 @@ public class login extends javax.swing.JFrame {
         }
     }
     
-    private String verAlerta() {
+    public String verAlerta() {
         return this.alerta;
     }
     

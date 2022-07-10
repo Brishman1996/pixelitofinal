@@ -50,8 +50,13 @@ public class loginTest {
         String usuario = "canowolf@hotmail.com";
         String contraseña = "brishman";
         
-        boolean Esperado = true;
+        String alerta = "";
+        
         boolean Resultado;
+        
+        if(alerta.length() == 0){
+            Resultado = true;
+        }
         
         iniciarSesion.setContraseña(contraseña);
         iniciarSesion.setUsuarios(usuario);
@@ -72,8 +77,13 @@ public class loginTest {
         String usuario = "";
         String contraseña = "";
         
-        boolean Esperado = false;
+        String alerta = "";
+        
         boolean Resultado;
+        
+        if(alerta.length() > 0){
+            Resultado = false;
+        }
         
         iniciarSesion.setContraseña(contraseña);
         iniciarSesion.setUsuarios(usuario);
@@ -94,11 +104,18 @@ public class loginTest {
         String usuario = "UsuarioNoRegistrado";
         String contraseña = "OtraContraseña";
         
-        boolean Esperado = false;
+        String alerta = "";
+        
         boolean Resultado;
         
         iniciarSesion.setContraseña(contraseña);
         iniciarSesion.setUsuarios(usuario);
+        
+        alerta = iniciarSesion.verAlerta();
+        
+        if(alerta.length() > 0){
+            Resultado = false;
+        }
         
         Resultado = iniciarSesion.inciarSesion();
         

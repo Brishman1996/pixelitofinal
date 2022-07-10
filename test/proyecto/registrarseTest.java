@@ -54,7 +54,6 @@ public class registrarseTest {
         
         String alerta = "";
         
-        boolean Esperado;
         boolean Resultado;
         
         registro.setNombre(nombre);
@@ -64,8 +63,8 @@ public class registrarseTest {
         
         alerta = registro.verAlerta();
         
-        if(alerta.length() == 0){
-            Esperado = true;
+        if(alerta.length() > 0){
+            Resultado = false;
         }
         
         Resultado = registro.registrarUsuario();
@@ -88,7 +87,6 @@ public class registrarseTest {
         
         String alerta = "";
         
-        boolean Esperado;
         boolean Resultado;
         
         registro.setNombre(nombre);
@@ -98,8 +96,8 @@ public class registrarseTest {
         
         alerta = registro.verAlerta();
         
-        if(alerta.length() > 0){
-            Esperado = false;
+        if(alerta.length() == 0){
+            Resultado = true;
         }
         
         Resultado = registro.registrarUsuario();
@@ -123,7 +121,6 @@ public class registrarseTest {
         
         String alerta = "";
         
-        boolean Esperado;
         boolean Resultado;
         
         registro.setNombre(nombre);
@@ -133,8 +130,8 @@ public class registrarseTest {
         
         alerta = registro.verAlerta();
         
-        if(alerta.length() > 0){
-            Esperado = false;
+        if(alerta.length() == 0){
+            Resultado = true;
         }
         
         Resultado = registro.registrarUsuario();
@@ -157,7 +154,6 @@ public class registrarseTest {
         
         String alerta = "";
         
-        boolean Esperado;
         boolean Resultado;
         
         registro.setNombre(nombre);
@@ -167,8 +163,8 @@ public class registrarseTest {
         
         alerta = registro.verAlerta();
         
-        if(alerta.length() > 0){
-            Esperado = false;
+        if(alerta.length() == 0){
+            Resultado = true;
         }
         
         Resultado = registro.registrarUsuario();

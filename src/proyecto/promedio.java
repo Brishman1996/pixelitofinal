@@ -26,23 +26,23 @@ public class promedio extends javax.swing.JFrame {
 
     private String alerta = "";
 
-    private void setN1(String n1) {
+    public void setN1(String n1) {
         this.n1 = validarCampoNota(n1, "Nota 1");
     }
 
-    private void setN2(String n2) {
+    public void setN2(String n2) {
         this.n2 = validarCampoNota(n2, "Nota 2");
     }
 
-    private void setN3(String n3) {
+    public void setN3(String n3) {
         this.n3 = validarCampoNota(n3, "Nota 3");
     }
 
-    private void setN4(String n4) {
+    public void setN4(String n4) {
         this.n4 = validarCampoNota(n4, "Nota 4");
     }
 
-    private String getPromedio() {
+    public String getPromedio() {
         return Double.toString(this.promedio);
     }
     
