@@ -40,25 +40,140 @@ public class registrarseTest {
      * Test of setAlerta method, of class registrarse.
      */
     @Test
-    public void testSetAlerta() {
-        System.out.println("setAlerta");
+    public void testRegister_01() {
+        System.out.println("Prueba de intragración");
+        System.out.println("Caso prueba: Datos completos y validos");
+        
+        registrarse registro = new registrarse();
+        
+        //VALORES DE ENTRADA
+        String nombre="Emilio";
+        String apellidos="Vargas Contrera";
+        String correo="emilio@certus.com";
+        String contraseña="lamejorcontraseña2022";
+        
         String alerta = "";
-        registrarse instance = new registrarse();
-        instance.setAlerta(alerta);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        boolean Esperado;
+        boolean Resultado;
+        
+        registro.setNombre(nombre);
+        registro.setApellidos(apellidos);
+        registro.setCorreo(correo);
+        registro.setContraseña(contraseña);
+        
+        alerta = registro.verAlerta();
+        
+        if(alerta.length() == 0){
+            Esperado = true;
+        }
+        
+        Resultado = registro.registrarUsuario();
+        
+        assertTrue(Resultado);
+        
     }
-
-    /**
-     * Test of main method, of class registrarse.
-     */
     @Test
-    public void testMain() {
-        System.out.println("main");
-        String[] args = null;
-        registrarse.main(args);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testRegister_02() {
+        System.out.println("Prueba de intragración");
+        System.out.println("Caso prueba: Datos completos y no validos");
+        
+        registrarse registro = new registrarse();
+        
+        //VALORES DE ENTRADA
+        String nombre="123456789";
+        String apellidos="123456789";
+        String correo="elmejor416d1s";
+        String contraseña="lamejorcontraseña";
+        
+        String alerta = "";
+        
+        boolean Esperado;
+        boolean Resultado;
+        
+        registro.setNombre(nombre);
+        registro.setApellidos(apellidos);
+        registro.setCorreo(correo);
+        registro.setContraseña(contraseña);
+        
+        alerta = registro.verAlerta();
+        
+        if(alerta.length() > 0){
+            Esperado = false;
+        }
+        
+        Resultado = registro.registrarUsuario();
+        
+        assertFalse(Resultado);
+        
     }
     
+    @Test
+    public void testRegister_03() {
+        System.out.println("Prueba de intragración");
+        System.out.println("Caso prueba: Datos incompletos o vacios");
+        
+        registrarse registro = new registrarse();
+        
+        //VALORES DE ENTRADA
+        String nombre="";
+        String apellidos="";
+        String correo="";
+        String contraseña="";
+        
+        String alerta = "";
+        
+        boolean Esperado;
+        boolean Resultado;
+        
+        registro.setNombre(nombre);
+        registro.setApellidos(apellidos);
+        registro.setCorreo(correo);
+        registro.setContraseña(contraseña);
+        
+        alerta = registro.verAlerta();
+        
+        if(alerta.length() > 0){
+            Esperado = false;
+        }
+        
+        Resultado = registro.registrarUsuario();
+        
+        assertFalse(Resultado);
+        
+    }
+    @Test
+    public void testRegister_04() {
+        System.out.println("Prueba de intragración");
+        System.out.println("Caso prueba: Datos de usuario existentes");
+        
+        registrarse registro = new registrarse();
+        
+        //VALORES DE ENTRADA
+        String nombre="Emilio";
+        String apellidos="Vargas Contrera";
+        String correo="emilio@certus.com";
+        String contraseña="lamejorcontraseña2022";
+        
+        String alerta = "";
+        
+        boolean Esperado;
+        boolean Resultado;
+        
+        registro.setNombre(nombre);
+        registro.setApellidos(apellidos);
+        registro.setCorreo(correo);
+        registro.setContraseña(contraseña);
+        
+        alerta = registro.verAlerta();
+        
+        if(alerta.length() > 0){
+            Esperado = false;
+        }
+        
+        Resultado = registro.registrarUsuario();
+        
+        assertFalse(Resultado);
+        
+    }
 }

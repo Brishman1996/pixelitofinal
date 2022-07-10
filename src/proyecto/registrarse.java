@@ -19,15 +19,15 @@ public class registrarse extends javax.swing.JFrame {
 
     private String alerta = "";
 
-    private void setNombre(String nombre) {
+    public void setNombre(String nombre) {
         this.nombre = this.validarCampo(nombre, "Nombre");
     }
 
-    private void setApellidos(String apellidos) {
+    public void setApellidos(String apellidos) {
         this.apellidos = this.validarCampo(apellidos, "Apellidos");
     }
 
-    private void setCorreo(String correo) {
+    public void setCorreo(String correo) {
 
         Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
         Matcher mather = pattern.matcher(correo);
@@ -44,7 +44,7 @@ public class registrarse extends javax.swing.JFrame {
 
     }
 
-    private void setContraseña(String contraseña) {
+    public void setContraseña(String contraseña) {
 
         if (!contraseña.isEmpty()) {
             this.contraseña = contraseña;
@@ -80,11 +80,11 @@ public class registrarse extends javax.swing.JFrame {
         return texto;
     }
 
-    private String verAlerta() {
+    public String verAlerta() {
         return this.alerta;
     }
 
-    private boolean registrarUsuario() {
+    public boolean registrarUsuario() {
         boolean valid = false;
         int valor;
         valor = metodos.guardar(this.nombre, this.apellidos, this.correo, this.contraseña);

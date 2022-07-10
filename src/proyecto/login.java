@@ -22,7 +22,7 @@ public class login extends javax.swing.JFrame {
     Metodos_sql metodos = new Metodos_sql();
     private String alerta = "";
     
-    private void setUsuarios(String correo) {
+    public void setUsuarios(String correo) {
         
         Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
         Matcher mather = pattern.matcher(correo);
@@ -44,7 +44,7 @@ public class login extends javax.swing.JFrame {
         this.alerta = alerta;
     }
     
-    private void setContraseña(String contraseña) {
+    public void setContraseña(String contraseña) {
         if (!contraseña.isEmpty()) {
             this.contraseña = contraseña;
         }else{
@@ -56,7 +56,7 @@ public class login extends javax.swing.JFrame {
         return this.alerta;
     }
     
-    private boolean inciarSesion (){
+    public boolean inciarSesion (){
         boolean valido=false;
         int mensaje;
              
