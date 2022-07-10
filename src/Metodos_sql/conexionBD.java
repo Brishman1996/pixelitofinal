@@ -18,10 +18,10 @@ import java.sql.SQLException;
 public class conexionBD {
     
     //llamamos a la base de datos por medio de la url
-   public static String url = "jdbc:mysql://agenciabrishmancl.com:3306/ykypmkom_pixelito";
+   public static String url = "jdbc:mysql://agenciabrishmancl.com:3306/ykypmkom_brish";
     //llamamos a los parametros locales  de la base de datos 
-    public static String usuario = "ykypmkom_brish";
-    public static String contraseña ="CERTUS2022BDLJJ";
+    public static String usuario = "ykypmkom_pixel";
+    public static String contraseña ="canoleonbrishman";
     public static String clase = "com.mysql.cj.jdbc.Driver";
 
     //realizamos el metodo de conectar 
