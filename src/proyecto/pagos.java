@@ -28,26 +28,26 @@ public class pagos extends javax.swing.JFrame {
     
     private String infoCaja;
     
-    private String getInfoCaja() {
+    public String getInfoCaja() {
         return infoCaja;
     }
-    private int getCodigo() {
+    public int getCodigo() {
         return codigo;
     }
 
-    private String getApe_nom() {
+    public String getApe_nom() {
         return ape_nom;
     }
 
-    private String getCarreras() {
+    public String getCarreras() {
         return carreras;
     }
 
-    private int getMeses_pagos() {
+    public int getMeses_pagos() {
         return meses_pagos;
     }
 
-    private void setCodigo(String codigo) {
+    public void setCodigo(String codigo) {
         if(!codigo.isEmpty()){
             try {
                 this.codigo = Integer.parseInt(codigo);
@@ -58,15 +58,15 @@ public class pagos extends javax.swing.JFrame {
         }
     }
 
-    private void setApe_nom(String ape_nom) {
+    public void setApe_nom(String ape_nom) {
         this.ape_nom = ape_nom;
     }
 
-    private void setCarreras(String carreras) {
+    public void setCarreras(String carreras) {
         this.carreras = carreras;
     }
 
-    private void setMeses_pagos(String meses_pagos) {
+    public void setMeses_pagos(String meses_pagos) {
         if (!meses_pagos.isEmpty()){
             try {
                 this.meses_pagos = Integer.parseInt(meses_pagos);

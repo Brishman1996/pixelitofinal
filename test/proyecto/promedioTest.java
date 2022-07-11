@@ -52,6 +52,7 @@ public class promedioTest {
         mediaAritmetica.calcularPromedio();
         String esperado = "11.5";
         
+        //METODO A TESTEAR
         String resultado = mediaAritmetica.getPromedio();
         
         assertEquals(esperado, resultado);
@@ -108,6 +109,7 @@ public class promedioTest {
         
         promedio mediaAritmetica = new promedio();
         
+        //DATOS DE ENTRADA
         mediaAritmetica.setN1("Haste una profe");
         mediaAritmetica.setN2("Quiero 20");
         mediaAritmetica.setN3("si lo hace");

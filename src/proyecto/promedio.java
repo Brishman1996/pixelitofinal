@@ -50,7 +50,7 @@ public class promedio extends javax.swing.JFrame {
         return rendimiento;
     }
 
-    public double validarCampoNota(String num, String nota) {
+    private double validarCampoNota(String num, String nota) {
         double decimal = -1;
         if (!num.isEmpty()) {
             try {
